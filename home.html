@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coban Talun Tourism</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Coban Talun</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="tl.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <center>
+        <h2>Explore the Beauty of Coban Talun</h2>
+        <p>Discover the breathtaking natural wonders of Coban Talun, a premier destination in East Java, Indonesia.</p>
+    </center>  
+    </div>
+    </section>
+
+    <div class="carousel-container">
+      <div class="carousel-slide" id="carouselSlide">
+        <div class="feature carousel-item">
+          <center>
+            <img src="bunga.webp" width="1200px">
+            <h3>Bunga Bungi Bungee</h3>
+          </center>
+        </div>
+        <div class="feature carousel-item">
+          <center>
+            <img src="air terjun.webp" width="1200px">
+            <h3>Minimal mandi dekk</h3>
+          </center>
+        </div>
+        <div class="feature carousel-item">
+          <center>
+            <img src="mobil offroad.jpg" width="1200px">
+            <h3>Bisa di pake Balapan </h3>
+          </center>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-button prev">Prev</button>
+        <div class="carousel-dots">
+          <span class="carousel-dot active"></span>
+          <span class="carousel-dot"></span>
+          <span class="carousel-dot"></span>
+        </div>
+        <button class="carousel-button next">Next</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Coban Talun Tourism. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get the carousel elements
+    const carouselContainer = document.querySelector('.carousel-container');
+    const carouselSlide = document.querySelector('.carousel-slide');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const nextButton = document.querySelector('.carousel-button.next');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+
+    let currentIndex = 0;
+
+    // Function to move the carousel
+    function moveCarousel(index) {
+      carouselSlide.style.transform = `translateX(-${index * 100}%)`;
+      carouselDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    // Handle previous button click
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+      moveCarousel(currentIndex);
+    });
+
+    // Handle next button click
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      moveCarousel(currentIndex);
+    });
+
+    // Handle dot click
+    carouselDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        moveCarousel(currentIndex);
+      });
+    });
+
+    // Initialize the carousel
+    moveCarousel(currentIndex);
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product List</title>
+  <link rel="stylesheet" href="categories.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <img class="logo" src="logo.jpeg" alt="Logo">
+    <ul class="nav-list">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Tentang Kami</a></li>
+      <li>
+        <a href="#">Menu</a>
+        <ul class="submenu">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+          <li><a href="#">Halaman Admin</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Kontak</a></li>
+    </ul>
+    <div class="search-box">
+      <input type="text" placeholder="Cari...">
+      <button type="submit">Cari</button>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <h1>Selamat Datang di Objek Wisata Coban Talun</h1>
+      <p>Silahkan Memilih Objek Wisata</p>
+    </div>
+  </header>
+
+  <section class="container">
+    <h2>Pilihan Objek Wisata</h2>
+    <div class="product-list">
+      <!-- Example product item -->
+      <div class="product-item">
+        <img src="air terjun.webp" alt="Objek 1" class="product-photo">
+        <div class="product-details">
+          <p><strong>ID:</strong> 1</p>
+          <p><strong>Category:</strong> Air Terjun</p>
+          <p><strong>Price:</strong> Rp15000</p>
+          <p><span>Description:</span>Minimal Mandi</p>
+        </div>
+      </div>
+      <div class="product-item">
+        <img src="mobil offroad.jpg" alt="Objek 2" class="product-photo">
+        <div class="product-details">
+          <p><strong>ID:</strong> 2</p>
+          <p><strong>Category:</strong> Mobil Offroad</p>
+          <p><strong>Price:</strong> Rp30000</p>
+          <p><span>Description:</span>Bisa Balapan</p>
+        </div>
+      </div>
+      <div class="product-item">
+        <img src="bunga.webp" alt="Objek 3" class="product-photo">
+        <div class="product-details">
+          <p><strong>ID:</strong> 3</p>
+          <p><strong>Category:</strong> Taman Bunga</p>
+          <p><strong>Price:</strong> Rp25000</p>
+          <p><span>Description:</span>Ini Bunga</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 CatShop. All rights reserved.</p>
+  </footer>
+
+  <!-- Popup structure -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h2>Confirm Navigation</h2>
+      <p>Are you sure you want to navigate to the new page?</p>
+      <button id="confirm-navigation">Yes, proceed</button>
+      <button id="cancel-navigation">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var sidebarBtn = document.querySelector('.sidebarBtn');
+      var sidebar = document.querySelector('.sidebar');
+      var popup = document.getElementById('popup');
+      var closeBtn = document.querySelector('.popup .close');
+      var confirmNavBtn = document.getElementById('confirm-navigation');
+      var cancelNavBtn = document.getElementById('cancel-navigation');
+      var targetLink = null;
+
+      document.querySelectorAll('.nav-list a').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          targetLink = link.getAttribute('href');
+          popup.style.display = 'block';
+        });
+      });
+
+      closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      cancelNavBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      confirmNavBtn.addEventListener('click', function() {
+        window.location.href = targetLink;
+      });
+
+      window.addEventListener('click', function(event) {
+        if (event.target == popup) {
+          popup.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

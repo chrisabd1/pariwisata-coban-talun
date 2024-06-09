@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="stylesheet" href="admin.css" />
+  <link
+    href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+    rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CobanTalun Official Admin</title>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bx bx-category"></i>
+      <span class="logo_name">CobanTalun Official</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="home.html" class="active">
+          <i class="bx bx-grid-alt"></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a href="categories.html">
+          <i class="bx bx-box"></i>
+          <span class="links_name">Categories</span>
+        </a>
+      </li>
+      <li>
+        <a href="transaction.html">
+          <i class="bx bx-list-ul"></i>
+          <span class="links_name">Transaction</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="logout.php">
+          <i class="bx bx-log-out"></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class="bx bx-menu sidebarBtn"></i>
+      </div>
+      <div class="profile-details">
+        <span class="admin_name">Admin</span>
+      </div>
+    </nav>
+    <div class="home-content">
+      <h2 id="text"></h2>
+      <h3 id="date"></h3>
+    </div>
+  </section>
+
+  <!-- Popup structure -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h2>Confirm Navigation</h2>
+      <p>Are you sure you want to navigate to the new page?</p>
+      <button id="confirm-navigation">Yes, proceed</button>
+      <button id="cancel-navigation">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var sidebarBtn = document.querySelector('.sidebarBtn');
+      var sidebar = document.querySelector('.sidebar');
+      var popup = document.getElementById('popup');
+      var closeBtn = document.querySelector('.popup .close');
+      var confirmNavBtn = document.getElementById('confirm-navigation');
+      var cancelNavBtn = document.getElementById('cancel-navigation');
+      var targetLink = null;
+
+      sidebarBtn.addEventListener('click', function() {
+        sidebar.classList.toggle('active');
+        if (sidebar.classList.contains('active')) {
+          sidebarBtn.classList.replace('bx-menu', 'bx-menu-alt-right');
+        } else {
+          sidebarBtn.classList.replace('bx-menu-alt-right', 'bx-menu');
+        }
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          targetLink = link.getAttribute('href');
+          popup.style.display = 'block';
+        });
+      });
+
+      closeBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      cancelNavBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+      });
+
+      confirmNavBtn.addEventListener('click', function() {
+        window.location.href = targetLink;
+      });
+
+      window.addEventListener('click', function(event) {
+        if (event.target == popup) {
+          popup.style.display = 'none';
+        }
+      });
+
+      var date = new Date();
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('date').innerHTML = date.toLocaleDateString('id-ID', options);
+
+      var greeting;
+      var hour = date.getHours();
+      if (hour < 12) {
+        greeting = "Selamat Pagi";
+      } else if (hour < 18) {
+        greeting = "Selamat Siang";
+      } else {
+        greeting = "Selamat Malam";
+      }
+      document.getElementById('text').innerHTML = greeting + ", Admin!";
+    });
+  </script>
+</body>
+</html>

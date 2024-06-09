@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Website dengan Hamburger Menu dan Popup</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="#">Logo</a>
+        </div>
+        <div id="hamburger-menu" class="hamburger-menu">
+            <div class="hamburger"></div>
+        </div>
+        <nav id="menu" class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Halaman Utama</h1>
+        <p>Isi halaman utama...</p>
+        <button id="popup-trigger" class="popup-trigger">Tampilkan Info Coban Talun</button>
+    </main>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="close-popup" class="close-popup">&times;</span>
+            <h2>Wisata Coban Talun</h2>
+            <p>Coban Talun adalah salah satu wisata air terjun yang terkenal di Malang, Jawa Timur. Tempat ini menawarkan keindahan alam yang menakjubkan dengan air terjun yang mempesona dan suasana yang sejuk.</p>
+            <p>Lokasi: Desa Tulungrejo, Kecamatan Bumiaji, Kota Batu, Jawa Timur.</p>
+            <p>Fasilitas: Area camping, taman bunga, penginapan, dan banyak lagi.</p>
+            <img src="https://example.com/coban-talun.jpg" alt="Coban Talun" style="width: 100%; height: auto;">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nama Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var hamburgerMenu = document.getElementById('hamburger-menu');
+            var menu = document.getElementById('menu');
+
+            hamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.toggle('active');
+                menu.classList.toggle('active');
+            });
+
+            var popupTrigger = document.getElementsByClassName('popup-trigger')[0];
+            var popup = document.getElementById('popup');
+            var closePopup = document.getElementById('close-popup');
+
+            popupTrigger.addEventListener('click', function() {
+                popup.style.display = 'block';
+            });
+
+            closePopup.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == popup) {
+                    popup.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
